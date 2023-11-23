@@ -87,6 +87,15 @@ fig_libro_2 = px.bar(
      template='plotly_white',
 )
 
+ticktext = libros2['TITULO'].apply(lambda x: x[:14] + '...' if len(x) > 14 else x)
+fig_libro_2.update_xaxes(tickangle=40, tickmode='array', tickvals=libros2['TITULO'], ticktext=ticktext)
+
+st.subheader("Distribución de Títulos por Departamento")
+df_departamento = df_opcion.groupby('DEPARTAMENTO_SOLICITANTE')['TITULO'].count()
+st.bar_chart(df_departamento)
+
+
+
 left_column, right_column = st.columns(2)
 left_column.plotly_chart(fig_libro, use_container_width= True)
 right_column.plotly_chart(fig_libro_2, use_container_width= True)
