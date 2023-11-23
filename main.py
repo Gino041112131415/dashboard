@@ -33,14 +33,9 @@ NOMBRES_SOLICITANTE=st.sidebar.multiselect(
 )
 
 
-TITULO =st.sidebar.multiselect(
-    "seleccione el titulo:",
-    options = df_libros['TITULO'].unique(),
-    default = df_libros['TITULO'].unique()
-)
 
 
-df_opcion = df_libros.query("DEPARTAMENTO_SOLICITANTE == @DEPARTAMENTO_SOLICITANTE &  DISTRITO_SOLICITANTE == @DISTRITO_SOLICITANTE   &  NOMBRES_SOLICITANTE == @NOMBRES_SOLICITANTE  &  TITULO == @TITULO")
+df_opcion = df_libros.query("DEPARTAMENTO_SOLICITANTE == @DEPARTAMENTO_SOLICITANTE &  DISTRITO_SOLICITANTE == @DISTRITO_SOLICITANTE   &  NOMBRES_SOLICITANTE == @NOMBRES_SOLICITANTE ")
 
 libro_max_copias = df_opcion.iloc[df_opcion['TIRAJE'].idxmax()]
 titulo_libro_max_copias = libro_max_copias['TITULO']
